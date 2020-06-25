@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Alert, View, ActivityIndicator, StyleSheet} from 'react-native';
+
 import {
   Container,
   Header,
@@ -12,37 +14,57 @@ import {
   Right,
   Button,
 } from 'native-base';
+import {DataItem} from '../../components';
+import getArticles from '../../service';
 export default class ListThumbnailExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      data: null,
+    };
+  }
+
+  componentDidMount() {
+    getArticles('technology').then(
+      data => {
+        this.setState({
+          isLoading: false,
+          data: data,
+        });
+      },
+      error => {
+        Alert.alert('Error', 'Something went wrong!');
+      },
+    );
+  }
   render() {
+    const view = this.state.isLoading ? (
+      <View style={styles.wrapLoading}>
+        <ActivityIndicator animating={this.state.isLoading} />
+        <Text>Please Wait...</Text>
+      </View>
+    ) : (
+      <List
+        dataArray={this.state.data}
+        renderRow={item => {
+          return <DataItem data={item} />;
+        }}
+      />
+    );
     return (
       <Container>
-        <Content>
-          <List>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail
-                  square
-                  source={{
-                    uri:
-                      'https://img1.rapidleaks.com/2018/09/Most-Beautiful-Girls-on-the-Earth-1280x720.jpg',
-                  }}
-                />
-              </Left>
-              <Body>
-                <Text>News Title</Text>
-                <Text note numberOfLines={2}>
-                  Its time to build a difference . .
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-          </List>
-        </Content>
+        <Content>{view}</Content>
       </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  wrapLoading: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    marginTop: 10,
+  },
+});

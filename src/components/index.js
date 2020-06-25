@@ -1,2 +1,4 @@
 import Header from './Header';
-export {Header};
+import DataItem from './DataItem';
+import Time from './Time';
+export {Header, DataItem, Time};
