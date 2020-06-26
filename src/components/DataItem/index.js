@@ -10,7 +10,7 @@ import {
   Button,
 } from 'native-base';
 import Time from '../Time';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 class DataItem extends Component {
   constructor(props) {
@@ -45,9 +45,16 @@ class DataItem extends Component {
           </View>
         </Body>
         <Right>
-          <Button transparent>
-            <Text>View</Text>
-          </Button>
+          <TouchableOpacity
+            onPress={this.handlePress}
+            style={{
+              backgroundColor: 'blue',
+              width: 50,
+              height: 20,
+              borderRadius: 10,
+            }}>
+            <Text style={{color: 'white', textAlign: 'center'}}>View</Text>
+          </TouchableOpacity>
         </Right>
       </ListItem>
     );

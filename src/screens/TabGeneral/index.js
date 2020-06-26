@@ -14,7 +14,8 @@ import {
   Right,
   Button,
 } from 'native-base';
-import {DataItem} from '../../components';
+import {DataItem, ModalComponent} from '../../components';
+
 import getArticles from '../../service';
 export default class ListThumbnailExample extends Component {
   constructor(props) {
@@ -22,8 +23,23 @@ export default class ListThumbnailExample extends Component {
     this.state = {
       isLoading: true,
       data: null,
+      setModalVisible: false,
+      modalArticleData: {},
     };
   }
+
+  handleItemDataOnPress = articleData => {
+    this.setState({
+      setModalVisible: true,
+      modalArticleData: articleData,
+    });
+  };
+  handleModalClose = () => {
+    this.setState({
+      setModalVisible: false,
+      modalArticleData: {},
+    });
+  };
 
   componentDidMount() {
     getArticles('technology').then(
@@ -48,13 +64,18 @@ export default class ListThumbnailExample extends Component {
       <List
         dataArray={this.state.data}
         renderRow={item => {
-          return <DataItem data={item} />;
+          return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
         }}
       />
     );
     return (
       <Container>
         <Content>{view}</Content>
+        <ModalComponent
+          showModal={this.state.setModalVisible}
+          articleData={this.state.modalArticleData}
+          onClose={this.handleModalClose}
+        />
       </Container>
     );
   }

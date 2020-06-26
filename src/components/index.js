@@ -1,4 +1,5 @@
 import Header from './Header';
 import DataItem from './DataItem';
 import Time from './Time';
-export {Header, DataItem, Time};
+import ModalComponent from './ModalComponent';
+export {Header, DataItem, Time, ModalComponent};
