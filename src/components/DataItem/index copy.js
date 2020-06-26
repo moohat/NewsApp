@@ -44,11 +44,11 @@ class DataItem extends Component {
       //       <Time time={this.data.publishedAt} />
       //     </View>
       //   </Body>
-        <Right>
-          <TouchableOpacity onPress={this.handlePress} style={styles.btnView}>
-            <Text style={styles.text}>View</Text>
-          </TouchableOpacity>
-        </Right>
+      <Right>
+        <TouchableOpacity onPress={this.handlePress} style={styles.btnView}>
+          <Text style={styles.text}>View</Text>
+        </TouchableOpacity>
+      </Right>
       // </ListItem>
     );
   }

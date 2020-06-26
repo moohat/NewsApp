@@ -5,7 +5,6 @@ import {
   ActivityIndicator,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -17,13 +16,8 @@ import {
   Item,
   Icon,
   Input,
-  ListItem,
-  Left,
-  Body,
-  Thumbnail,
-  Right,
 } from 'native-base';
-import {DataItem, ModalComponent, Time} from '../../components';
+import {DataItem, ModalComponent} from '../../components';
 import _ from 'lodash';
 
 import getArticles from '../../service';
@@ -67,35 +61,8 @@ export default class TabTech extends Component {
       },
     );
   }
-  handlePress = () => {
-    const {url, title} = this.state.data;
-    this.onPress({url, title});
-  };
   _renderItem = ({item, index}) => {
-    return (
-      <ListItem thumbnail>
-        <Left>
-          <Thumbnail
-            square
-            source={{
-              uri: item.urlToImage,
-            }}
-          />
-        </Left>
-        <Body>
-          <Text numberOfLines={2}>{item.title}</Text>
-          <Text note numberOfLines={2}>
-            {item.description}
-          </Text>
-          <View style={styles.wrapText}>
-            <Text>{item.source.name}</Text>
-            <Time time={item.publishedAt} />
-          </View>
-        </Body>
-
-        <DataItem onPress={this.handleItemDataOnPress} data={item} />
-      </ListItem>
-    );
+    return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
   };
 
   handleSearch = text => {
@@ -111,8 +78,6 @@ export default class TabTech extends Component {
       query: text,
     });
   };
-
- 
 
   render() {
     const view = this.state.isLoading ? (
@@ -155,20 +120,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     marginTop: 10,
-  },
-  wrapText: {
-    flexDirection: 'row',
-    alignContent: 'center',
-    marginTop: 4,
-  },
-  text: {
-    color: 'white',
-    textAlign: 'center',
-  },
-  btnView: {
-    backgroundColor: 'blue',
-    width: 50,
-    height: 20,
-    borderRadius: 10,
   },
 });

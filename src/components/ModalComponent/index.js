@@ -1,13 +1,7 @@
+import {Body, Container, Header, Icon, Left, Title} from 'native-base';
 import React, {Component} from 'react';
-import {
-  Modal,
-  Share,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {Modal, StyleSheet, TouchableOpacity} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {Container, Header, Content, Body, Left, Icon, Title} from 'native-base';
 
 class ModalComponent extends Component {
   constructor(props) {
@@ -16,11 +10,12 @@ class ModalComponent extends Component {
   handleClose = () => {
     return this.props.onClose();
   };
+  handleShare = () => {};
 
   render() {
     const {showModal, articleData} = this.props;
     const {url} = articleData;
-    if (url != undefined) {
+    if (url !== undefined) {
       return (
         <Modal
           animationType="slide"
@@ -42,7 +37,7 @@ class ModalComponent extends Component {
                 <Title
                   children={articleData.title}
                   style={styles.text}
-                  numberOfLines={2}
+                  numberOfLines={3}
                 />
               </Body>
             </Header>
@@ -76,7 +71,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 27,
-    color: 'white',
+    color: 'red',
   },
   webview: {
     flex: 1,
