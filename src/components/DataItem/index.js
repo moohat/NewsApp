@@ -25,25 +25,7 @@ class DataItem extends Component {
 
   render() {
     return (
-      // <ListItem thumbnail>
-      //   <Left>
-      //     <Thumbnail
-      //       square
-      //       source={{
-      //         uri: this.data.urlToImage,
-      //       }}
-      //     />
-      //   </Left>
-      //   <Body>
-      //     <Text numberOfLines={2}>{this.data.title}</Text>
-      //     <Text note numberOfLines={2}>
-      //       {this.data.description}
-      //     </Text>
-      //     <View style={styles.wrapText}>
-      //       <Text>{this.data.source.name}</Text>
-      //       <Time time={this.data.publishedAt} />
-      //     </View>
-      //   </Body>
+  
         <Right>
           <TouchableOpacity onPress={this.handlePress} style={styles.btnView}>
             <Text style={styles.text}>View</Text>

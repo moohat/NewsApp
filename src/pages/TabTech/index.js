@@ -67,10 +67,7 @@ export default class TabTech extends Component {
       },
     );
   }
-  handlePress = () => {
-    const {url, title} = this.state.data;
-    this.onPress({url, title});
-  };
+
   _renderItem = ({item, index}) => {
     return (
       <ListItem thumbnail>
@@ -111,8 +108,6 @@ export default class TabTech extends Component {
       query: text,
     });
   };
-
- 
 
   render() {
     const view = this.state.isLoading ? (
