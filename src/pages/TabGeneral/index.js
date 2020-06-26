@@ -21,13 +21,13 @@ import {DataItem, ModalComponent} from '../../components';
 import _ from 'lodash';
 
 import getArticles from '../../service';
-export default class ListThumbnailExample extends Component {
+export default class TabGeneral extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      data: null,
-      dataBackup: null,
+      data: [],
+      dataBackup: [],
       setModalVisible: false,
       modalArticleData: {},
       query: '',
@@ -69,7 +69,7 @@ export default class ListThumbnailExample extends Component {
   handleSearch = text => {
     const formattedQuery = text.toLowerCase();
     const data = _.filter(this.state.dataBackup, item => {
-      if (item.title.includes(formattedQuery)) {
+      if (item.title.toLowerCase().includes(formattedQuery)) {
         return true;
       }
       return false;

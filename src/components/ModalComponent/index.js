@@ -16,7 +16,6 @@ class ModalComponent extends Component {
   handleClose = () => {
     return this.props.onClose();
   };
-  handleShare = () => {};
 
   render() {
     const {showModal, articleData} = this.props;

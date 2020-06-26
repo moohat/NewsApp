@@ -1,20 +1,24 @@
 import React, {Component} from 'react';
-import {Alert, View, ActivityIndicator, StyleSheet} from 'react-native';
+import {
+  Alert,
+  View,
+  ActivityIndicator,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
 
 import {
   Container,
-  Header,
   Content,
   List,
-  ListItem,
-  Thumbnail,
   Text,
-  Left,
-  Body,
-  Right,
-  Button,
+  Header,
+  Item,
+  Icon,
+  Input,
 } from 'native-base';
 import {DataItem, ModalComponent} from '../../components';
+import _ from 'lodash';
 
 import getArticles from '../../service';
 export default class TabBusiness extends Component {
@@ -22,9 +26,12 @@ export default class TabBusiness extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      data: null,
+      data: [],
+      dataBackup: [],
       setModalVisible: false,
       modalArticleData: {},
+      query: '',
+
     };
   }
 
@@ -47,6 +54,7 @@ export default class TabBusiness extends Component {
         this.setState({
           isLoading: false,
           data: data,
+          dataBackup: data,
         });
       },
       error => {
@@ -54,6 +62,24 @@ export default class TabBusiness extends Component {
       },
     );
   }
+  _renderItem = ({item, index}) => {
+    return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
+  };
+
+  handleSearch = text => {
+    const formattedQuery = text.toLowerCase();
+    const data = _.filter(this.state.dataBackup, item => {
+      if (item.title.toLowerCase().includes(formattedQuery)) {
+        return true;
+      }
+      return false;
+    });
+    this.setState({
+      data,
+      query: text,
+    });
+  };
+
   render() {
     const view = this.state.isLoading ? (
       <View style={styles.wrapLoading}>
@@ -61,15 +87,23 @@ export default class TabBusiness extends Component {
         <Text>Please Wait...</Text>
       </View>
     ) : (
-      <List
-        dataArray={this.state.data}
-        renderRow={item => {
-          return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
-        }}
-      />
+      <List>
+        <FlatList
+          data={this.state.data}
+          renderItem={this._renderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </List>
     );
     return (
       <Container>
+        <Header searchBar rounded>
+          <Item>
+            <Icon type="Ionicons" name="search" />
+            <Input placeholder="Search" onChangeText={this.handleSearch} />
+          </Item>
+        </Header>
+
         <Content>{view}</Content>
         <ModalComponent
           showModal={this.state.setModalVisible}
