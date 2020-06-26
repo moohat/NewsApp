@@ -4,10 +4,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import Router from './router';
 import {Header} from './components';
 
-const App = () => {
+const App = ({title}) => {
   return (
     <>
-      <Header />
       <NavigationContainer>
         <Router />
       </NavigationContainer>
@@ -16,4 +15,3 @@ const App = () => {
 };
 
 export default App;
-

@@ -17,7 +17,7 @@ import {
 import {DataItem, ModalComponent} from '../../components';
 
 import getArticles from '../../service';
-export default class ListThumbnailExample extends Component {
+export default class TabBusiness extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ export default class ListThumbnailExample extends Component {
   };
 
   componentDidMount() {
-    getArticles('technology').then(
+    getArticles('business').then(
       data => {
         this.setState({
           isLoading: false,

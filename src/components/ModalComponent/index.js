@@ -7,19 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
-import {
-  Container,
-  Header,
-  Content,
-  Body,
-  Left,
-  Icon,
-  Right,
-  Title,
-  Button,
-} from 'native-base';
-
-const webViewHeight = Dimensions.get('window').height - 56;
+import {Container, Header, Content, Body, Left, Icon, Title} from 'native-base';
 
 class ModalComponent extends Component {
   constructor(props) {
@@ -40,22 +28,22 @@ class ModalComponent extends Component {
           transparent
           visible={showModal}
           onRequestClose={this.handleClose}>
-          <Container style={{margin: 10, backgroundColor: '#fff'}}>
-            <Header style={{backgroundColor: '#009387'}}>
-              <Left style={{marginRight: -60}}>
+          <Container style={styles.container}>
+            <Header>
+              <Left style={styles.leftIcon}>
                 <TouchableOpacity onPress={this.handleClose}>
                   <Icon
                     type="Ionicons"
-                    name="close"
-                    style={{color: 'white', fontSize: 27}}
+                    name="close-circle"
+                    style={styles.icon}
                   />
                 </TouchableOpacity>
               </Left>
               <Body>
                 <Title
                   children={articleData.title}
-                  style={{color: 'white'}}
-                  numberOfLines={3}
+                  style={styles.text}
+                  numberOfLines={2}
                 />
               </Body>
             </Header>
@@ -80,18 +68,22 @@ export default ModalComponent;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 15,
+    margin: 10,
     marginBottom: 0,
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
   },
-
-  header: {
-    // backgroundColor: 'white',
+  leftIcon: {
+    marginRight: -60,
   },
   icon: {
-    fontSize: 12,
+    fontSize: 27,
+    color: 'white',
   },
   webview: {
     flex: 1,
+  },
+  text: {
+    fontSize: 16,
+    color: 'white',
   },
 });

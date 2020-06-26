@@ -1,28 +1,54 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {TabBusiness, TabGeneral, TabTech} from '../screens';
+import {createStackNavigator} from '@react-navigation/stack';
+import {TabBusiness, TabGeneral, TabTech, MainMenu} from '../pages';
 
 const Tab = createMaterialTopTabNavigator();
+const Stack = createStackNavigator();
 
 const Router = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
+    // <Tab.Navigator>
+    //   <Tab.Screen
+    //     name="TabGeneral"
+    //     component={TabGeneral}
+    //     options={{title: 'GENERAL'}}
+    //   />
+    //   <Tab.Screen
+    //     name="TabBusiness"
+    //     component={TabBusiness}
+    //     options={{title: 'BUSINESS'}}
+    //   />
+    //   <Tab.Screen
+    //     name="TabTech"
+    //     component={TabTech}
+    //     options={{title: 'TECHNOLOGY'}}
+    //   />
+    // </Tab.Navigator>
+    <Stack.Navigator initialRouteName="MainMenu">
+      <Stack.Screen
+        name="MainMenu"
+        component={MainMenu}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="TabGeneral"
         component={TabGeneral}
-        options={{title: 'GENERAL'}}
+        options={{headerShown: false}}
       />
-      <Tab.Screen
+       <Stack.Screen
         name="TabBusiness"
         component={TabBusiness}
-        options={{title: 'BUSINESS'}}
+        options={{headerShown: false}}
       />
-      <Tab.Screen
+       <Stack.Screen
         name="TabTech"
         component={TabTech}
-        options={{title: 'TECHNOLOGY'}}
+        options={{headerShown: false}}
       />
-    </Tab.Navigator>
+
+
+    </Stack.Navigator>
   );
 };
 export default Router;
