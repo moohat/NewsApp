@@ -55,6 +55,8 @@ export default class TabTech extends Component {
   };
 
   componentDidMount() {
+    console.disableYellowBox = true;
+
     getArticles('general').then(
       data => {
         this.setState({

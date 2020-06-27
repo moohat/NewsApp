@@ -27,6 +27,8 @@ import {DataItem, ModalComponent, Time} from '../../components';
 import _ from 'lodash';
 
 import getArticles from '../../service';
+
+
 export default class TabTech extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +57,7 @@ export default class TabTech extends Component {
   };
 
   componentDidMount() {
+    console.disableYellowBox = true;
     getArticles('technology').then(
       data => {
         this.setState({

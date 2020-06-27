@@ -12,6 +12,7 @@ import {
 import Time from '../Time';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 
+
 class DataItem extends Component {
   constructor(props) {
     super(props);
