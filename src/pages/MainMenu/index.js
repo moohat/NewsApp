@@ -1,28 +1,32 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import {MenuItem} from '../../components';
+import {Text, View, StyleSheet, ImageBackground} from 'react-native';
+import {MenuItem, Header} from '../../components';
+import { BgNews } from '../../assets';
 
 class MainMenu extends Component {
   render() {
     const {navigation} = this.props;
 
     return (
-      <View style={styles.pages}>
-        <View>
-          <MenuItem
-            title="General"
-            onPress={() => navigation.navigate('TabGeneral')}
-          />
-          <MenuItem
-            title="Business"
-            onPress={() => navigation.navigate('TabBusiness')}
-          />
-          <MenuItem
-            title="Technology"
-            onPress={() => navigation.navigate('TabTech')}
-          />
-        </View>
-      </View>
+      <>
+        <Header />
+        <ImageBackground source={BgNews} style={styles.pages}>
+          <View>
+            <MenuItem
+              title="General"
+              onPress={() => navigation.navigate('TabGeneral')}
+            />
+            <MenuItem
+              title="Business"
+              onPress={() => navigation.navigate('TabBusiness')}
+            />
+            <MenuItem
+              title="Technology"
+              onPress={() => navigation.navigate('TabTech')}
+            />
+          </View>
+        </ImageBackground>
+      </>
     );
   }
 }
@@ -33,5 +37,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
+    backgroundColor: 'white',
   },
 });

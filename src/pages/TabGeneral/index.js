@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -16,14 +17,20 @@ import {
   Item,
   Icon,
   Input,
+  ListItem,
+  Left,
+  Body,
+  Thumbnail,
+  Right,
 } from 'native-base';
-import {DataItem, ModalComponent} from '../../components';
+import {DataItem, ModalComponent, Time} from '../../components';
 import _ from 'lodash';
 
 import getArticles from '../../service';
-export default class TabGeneral extends Component {
+export default class TabTech extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       isLoading: true,
       data: [],
@@ -31,7 +38,6 @@ export default class TabGeneral extends Component {
       setModalVisible: false,
       modalArticleData: {},
       query: '',
-
     };
   }
 
@@ -62,6 +68,7 @@ export default class TabGeneral extends Component {
       },
     );
   }
+
   _renderItem = ({item, index}) => {
     return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
   };
@@ -91,7 +98,7 @@ export default class TabGeneral extends Component {
         <FlatList
           data={this.state.data}
           renderItem={this._renderItem}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, index) => item.url}
         />
       </List>
     );
@@ -99,7 +106,7 @@ export default class TabGeneral extends Component {
       <Container>
         <Header searchBar rounded>
           <Item>
-            <Icon type="Ionicons" name="search" />
+            <Icon name="search" />
             <Input placeholder="Search" onChangeText={this.handleSearch} />
           </Item>
         </Header>
@@ -121,5 +128,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     marginTop: 10,
+  },
+  wrapText: {
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginTop: 4,
+  },
+  text: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  btnView: {
+    backgroundColor: 'blue',
+    width: 50,
+    height: 20,
+    borderRadius: 10,
   },
 });

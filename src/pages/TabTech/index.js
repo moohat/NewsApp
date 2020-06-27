@@ -30,6 +30,7 @@ import getArticles from '../../service';
 export default class TabTech extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       isLoading: true,
       data: [],
@@ -69,30 +70,7 @@ export default class TabTech extends Component {
   }
 
   _renderItem = ({item, index}) => {
-    return (
-      <ListItem thumbnail>
-        <Left>
-          <Thumbnail
-            square
-            source={{
-              uri: item.urlToImage,
-            }}
-          />
-        </Left>
-        <Body>
-          <Text numberOfLines={2}>{item.title}</Text>
-          <Text note numberOfLines={2}>
-            {item.description}
-          </Text>
-          <View style={styles.wrapText}>
-            <Text>{item.source.name}</Text>
-            <Time time={item.publishedAt} />
-          </View>
-        </Body>
-
-        <DataItem onPress={this.handleItemDataOnPress} data={item} />
-      </ListItem>
-    );
+    return <DataItem onPress={this.handleItemDataOnPress} data={item} />;
   };
 
   handleSearch = text => {
@@ -120,7 +98,7 @@ export default class TabTech extends Component {
         <FlatList
           data={this.state.data}
           renderItem={this._renderItem}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, index) => item.url}
         />
       </List>
     );

@@ -14,6 +14,8 @@ class ModalComponent extends Component {
   render() {
     const {showModal, articleData} = this.props;
     const {url} = articleData;
+    console.log(url);
+    
     if (url !== undefined) {
       return (
         <Modal
